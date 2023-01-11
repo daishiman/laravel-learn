@@ -1,0 +1,24 @@
+name: Insights
+
+on:
+  - pull_request
+
+jobs:
+  phpinsights:
+    runs-on: ubuntu-latest
+
+    name: PHP Insights checks
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-suggest --prefer-dist --working-dir=./src
+
+      - name: Insights Analyse
+        working-directory: ./src
+        run: php artisan insights -n --ansi --format=github-action
