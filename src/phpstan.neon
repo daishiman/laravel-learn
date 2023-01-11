@@ -1,0 +1,8 @@
+includes:
+  - ./tools/larastan/vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+  paths:
+    - app
+  level: 6
+  checkGenericClassInNonGenericObjectType: false
